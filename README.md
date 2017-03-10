@@ -11,7 +11,7 @@ See below for a schematic representation of this workflow.
 
 
 
-![](/Galaxy-workflow-for-scRNA-seq/schematic_of_scRNA-seq_pipeline.png)
+![](../Galaxy-workflow-for-scRNA-seq/schematic_of_scRNA-seq_pipeline.png)
 
 
 
