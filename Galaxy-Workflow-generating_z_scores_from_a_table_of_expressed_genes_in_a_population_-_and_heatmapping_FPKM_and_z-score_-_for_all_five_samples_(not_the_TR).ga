@@ -1,0 +1,514 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "", 
+    "format-version": "0.1", 
+    "name": "generating z scores from a table of expressed genes in a population - and heatmapping FPKM and z-score - for all five samples (not the TR) (imported from uploaded file)", 
+    "steps": {
+        "0": {
+            "annotation": "", 
+            "content_id": null, 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "Table of expressed genes of single cell population"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 200, 
+                "top": 255.046875
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"Table of expressed genes of single cell population\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "uuid": "dc4d3b4a-642c-4a69-97b3-afed696c479f", 
+            "workflow_outputs": []
+        }, 
+        "1": {
+            "annotation": "", 
+            "content_id": "testtoolshed.g2.bx.psu.edu/repos/moheydarian/melt/melt/0.0.2", 
+            "id": 1, 
+            "input_connections": {
+                "input1": {
+                    "id": 0, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool melt", 
+                    "name": "input1"
+                }
+            ], 
+            "label": null, 
+            "name": "melt", 
+            "outputs": [
+                {
+                    "name": "output1", 
+                    "type": "tabular"
+                }
+            ], 
+            "position": {
+                "left": 401.828125, 
+                "top": 241.75
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/moheydarian/melt/melt/0.0.2", 
+            "tool_shed_repository": {
+                "changeset_revision": "3621af0e3ef7", 
+                "name": "melt", 
+                "owner": "moheydarian", 
+                "tool_shed": "testtoolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"input1\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"chromInfo\": \"\\\"/mnt/galaxy/galaxy-app/tool-data/len/mm9.len\\\"\"}", 
+            "tool_version": "0.0.2", 
+            "type": "tool", 
+            "uuid": "cde663b7-7b17-4ca7-a25a-e85ea93a4bea", 
+            "workflow_outputs": []
+        }, 
+        "2": {
+            "annotation": "", 
+            "content_id": "testtoolshed.g2.bx.psu.edu/repos/moheydarian/heatmap2/heatmap2/0.0.2", 
+            "id": 2, 
+            "input_connections": {
+                "input1": {
+                    "id": 0, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool heatmap2", 
+                    "name": "input1"
+                }
+            ], 
+            "label": null, 
+            "name": "heatmap2", 
+            "outputs": [
+                {
+                    "name": "output1", 
+                    "type": "pdf"
+                }
+            ], 
+            "position": {
+                "left": 384.5, 
+                "top": 488
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput1": {
+                    "action_arguments": {
+                        "newname": "heatmap of HSC-R1, -R2, -R3 and MPP-R1 and -R2 expression levels "
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output1"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/moheydarian/heatmap2/heatmap2/0.0.2", 
+            "tool_shed_repository": {
+                "changeset_revision": "fbe13b4a6018", 
+                "name": "heatmap2", 
+                "owner": "moheydarian", 
+                "tool_shed": "testtoolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"__page__\": 0, \"coloring\": \"{\\\"__current_case__\\\": 0, \\\"colorscheme\\\": \\\"Default\\\"}\", \"title\": \"\\\"HSC-R1, -R2, -R3 and MPP-R1 and -R2 expression levels \\\"\", \"__rerun_remap_job_id__\": null, \"input1\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"key\": \"\\\"log10(FPKM + 1)\\\"\", \"transformation\": \"{\\\"transform\\\": \\\"log10plus1\\\", \\\"__current_case__\\\": 4}\"}", 
+            "tool_version": "0.0.2", 
+            "type": "tool", 
+            "uuid": "668a7625-d8ae-486e-b4db-bcccf3bc8109", 
+            "workflow_outputs": []
+        }, 
+        "3": {
+            "annotation": "", 
+            "content_id": "Remove beginning1", 
+            "id": 3, 
+            "input_connections": {
+                "input": {
+                    "id": 1, 
+                    "output_name": "output1"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Remove beginning", 
+                    "name": "input"
+                }
+            ], 
+            "label": null, 
+            "name": "Remove beginning", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 798.65625, 
+                "top": 226.953125
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "Remove beginning1", 
+            "tool_state": "{\"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/mnt/galaxy/galaxy-app/tool-data/len/mm9.len\\\"\", \"num_lines\": \"\\\"1\\\"\", \"__page__\": 0}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "uuid": "03f4a18d-37b4-4e90-8398-5f66ea121ef0", 
+            "workflow_outputs": []
+        }, 
+        "4": {
+            "annotation": "", 
+            "content_id": "Show beginning1", 
+            "id": 4, 
+            "input_connections": {
+                "input": {
+                    "id": 1, 
+                    "output_name": "output1"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Select first", 
+                    "name": "input"
+                }
+            ], 
+            "label": null, 
+            "name": "Select first", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 798.65625, 
+                "top": 338.765625
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "Show beginning1", 
+            "tool_state": "{\"__page__\": 0, \"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"chromInfo\": \"\\\"/mnt/galaxy/galaxy-app/tool-data/len/mm9.len\\\"\", \"lineNum\": \"\\\"1\\\"\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "uuid": "fe6e9fed-eaec-46a2-ae2f-72a0315defb4", 
+            "workflow_outputs": []
+        }, 
+        "5": {
+            "annotation": "", 
+            "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/datamash_ops/datamash_ops/1.0.6", 
+            "id": 5, 
+            "input_connections": {
+                "in_file": {
+                    "id": 3, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Datamash", 
+                    "name": "in_file"
+                }
+            ], 
+            "label": null, 
+            "name": "Datamash", 
+            "outputs": [
+                {
+                    "name": "out_file", 
+                    "type": "tabular"
+                }
+            ], 
+            "position": {
+                "left": 1045.4375, 
+                "top": 226.953125
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/datamash_ops/datamash_ops/1.0.6", 
+            "tool_shed_repository": {
+                "changeset_revision": "2f3c6f2dcf39", 
+                "name": "datamash_ops", 
+                "owner": "iuc", 
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"operations\": \"[{\\\"__index__\\\": 0, \\\"op_name\\\": \\\"mean\\\", \\\"op_column\\\": \\\"3\\\"}, {\\\"__index__\\\": 1, \\\"op_name\\\": \\\"pstdev\\\", \\\"op_column\\\": \\\"3\\\"}]\", \"__page__\": 0, \"ignore_case\": \"\\\"false\\\"\", \"__rerun_remap_job_id__\": null, \"header_in\": \"\\\"false\\\"\", \"in_file\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"need_sort\": \"\\\"true\\\"\", \"print_full_line\": \"\\\"false\\\"\", \"header_out\": \"\\\"false\\\"\", \"grouping\": \"\\\"1\\\"\"}", 
+            "tool_version": "1.0.6", 
+            "type": "tool", 
+            "uuid": "d28dee4e-890a-40fe-9898-1ff820591a39", 
+            "workflow_outputs": []
+        }, 
+        "6": {
+            "annotation": "", 
+            "content_id": "join1", 
+            "id": 6, 
+            "input_connections": {
+                "input1": {
+                    "id": 1, 
+                    "output_name": "output1"
+                }, 
+                "input2": {
+                    "id": 5, 
+                    "output_name": "out_file"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Join two Datasets", 
+                    "name": "input2"
+                }, 
+                {
+                    "description": "runtime parameter for tool Join two Datasets", 
+                    "name": "input1"
+                }
+            ], 
+            "label": null, 
+            "name": "Join two Datasets", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 1275.203125, 
+                "top": 226.953125
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "join1", 
+            "tool_state": "{\"input2\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0, \"field1\": \"\\\"1\\\"\", \"partial\": \"\\\"\\\"\", \"field2\": \"\\\"1\\\"\", \"__rerun_remap_job_id__\": null, \"fill_empty_columns\": \"{\\\"fill_empty_columns_switch\\\": \\\"no_fill\\\", \\\"__current_case__\\\": 0}\", \"unmatched\": \"\\\"\\\"\", \"input1\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"chromInfo\": \"\\\"/mnt/galaxy/galaxy-app/tool-data/len/mm9.len\\\"\"}", 
+            "tool_version": "2.0.2", 
+            "type": "tool", 
+            "uuid": "54100eae-5128-427b-8142-b75a918e62cb", 
+            "workflow_outputs": []
+        }, 
+        "7": {
+            "annotation": "", 
+            "content_id": "toolshed.g2.bx.psu.edu/repos/devteam/column_maker/Add_a_column1/1.1.0", 
+            "id": 7, 
+            "input_connections": {
+                "input": {
+                    "id": 6, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Compute", 
+                    "name": "input"
+                }
+            ], 
+            "label": null, 
+            "name": "Compute", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 1514, 
+                "top": 226.953125
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/devteam/column_maker/Add_a_column1/1.1.0", 
+            "tool_shed_repository": {
+                "changeset_revision": "626658afe4cb", 
+                "name": "column_maker", 
+                "owner": "devteam", 
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"cond\": \"\\\"((c3-c5)/c6)\\\"\", \"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"chromInfo\": \"\\\"/mnt/galaxy/galaxy-app/tool-data/len/mm9.len\\\"\", \"round\": \"\\\"no\\\"\"}", 
+            "tool_version": "1.1.0", 
+            "type": "tool", 
+            "uuid": "abfa0bb2-2c6f-4d03-87e8-3f711f2a4793", 
+            "workflow_outputs": []
+        }, 
+        "8": {
+            "annotation": "", 
+            "content_id": "Cut1", 
+            "id": 8, 
+            "input_connections": {
+                "input": {
+                    "id": 7, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Cut", 
+                    "name": "input"
+                }
+            ], 
+            "label": null, 
+            "name": "Cut", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "tabular"
+                }
+            ], 
+            "position": {
+                "left": 1742.765625, 
+                "top": 226.953125
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "Cut1", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"delimiter\": \"\\\"T\\\"\", \"columnList\": \"\\\"c1,c2,c7\\\"\", \"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"chromInfo\": \"\\\"/mnt/galaxy/galaxy-app/tool-data/len/mm9.len\\\"\"}", 
+            "tool_version": "1.0.2", 
+            "type": "tool", 
+            "uuid": "435a1f4f-da67-4f84-912f-096065b2ece1", 
+            "workflow_outputs": []
+        }, 
+        "9": {
+            "annotation": "", 
+            "content_id": "cat1", 
+            "id": 9, 
+            "input_connections": {
+                "input1": {
+                    "id": 4, 
+                    "output_name": "out_file1"
+                }, 
+                "queries_0|input2": {
+                    "id": 8, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool Concatenate datasets", 
+                    "name": "input1"
+                }
+            ], 
+            "label": null, 
+            "name": "Concatenate datasets", 
+            "outputs": [
+                {
+                    "name": "out_file1", 
+                    "type": "input"
+                }
+            ], 
+            "position": {
+                "left": 1971.5625, 
+                "top": 226.953125
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "cat1", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"input1\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"chromInfo\": \"\\\"/mnt/galaxy/galaxy-app/tool-data/len/mm9.len\\\"\", \"queries\": \"[{\\\"input2\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__index__\\\": 0}]\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "uuid": "c60a5922-0590-47ab-b11f-a048a5b8adc7", 
+            "workflow_outputs": []
+        }, 
+        "10": {
+            "annotation": "", 
+            "content_id": "testtoolshed.g2.bx.psu.edu/repos/moheydarian/cast/cast/0.0.2", 
+            "id": 10, 
+            "input_connections": {
+                "input1": {
+                    "id": 9, 
+                    "output_name": "out_file1"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool cast", 
+                    "name": "input1"
+                }
+            ], 
+            "label": null, 
+            "name": "cast", 
+            "outputs": [
+                {
+                    "name": "output1", 
+                    "type": "tabular"
+                }
+            ], 
+            "position": {
+                "left": 2233.328125, 
+                "top": 226.953125
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput1": {
+                    "action_arguments": {
+                        "newname": "Expressed genes of ____ with z-score"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output1"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/moheydarian/cast/cast/0.0.2", 
+            "tool_shed_repository": {
+                "changeset_revision": "d7e3814be68e", 
+                "name": "cast", 
+                "owner": "moheydarian", 
+                "tool_shed": "testtoolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"input1\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_version": "0.0.2", 
+            "type": "tool", 
+            "uuid": "6610f563-6c33-4c05-a9a3-b9ac26002617", 
+            "workflow_outputs": []
+        }, 
+        "11": {
+            "annotation": "", 
+            "content_id": "testtoolshed.g2.bx.psu.edu/repos/moheydarian/heatmap2/heatmap2/0.0.2", 
+            "id": 11, 
+            "input_connections": {
+                "input1": {
+                    "id": 10, 
+                    "output_name": "output1"
+                }
+            }, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool heatmap2", 
+                    "name": "input1"
+                }
+            ], 
+            "label": null, 
+            "name": "heatmap2", 
+            "outputs": [
+                {
+                    "name": "output1", 
+                    "type": "pdf"
+                }
+            ], 
+            "position": {
+                "left": 2463, 
+                "top": 227
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput1": {
+                    "action_arguments": {
+                        "newname": "HSC-R1, -R2, -R3 and MPP-R1 and -R2 z-scores"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output1"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "testtoolshed.g2.bx.psu.edu/repos/moheydarian/heatmap2/heatmap2/0.0.2", 
+            "tool_shed_repository": {
+                "changeset_revision": "fbe13b4a6018", 
+                "name": "heatmap2", 
+                "owner": "moheydarian", 
+                "tool_shed": "testtoolshed.g2.bx.psu.edu"
+            }, 
+            "tool_state": "{\"__page__\": 0, \"coloring\": \"{\\\"__current_case__\\\": 1, \\\"colorscheme\\\": \\\"Defined\\\"}\", \"title\": \"\\\"HSC-R1, -R2, -R3 and MPP-R1 and -R2 z-scores\\\"\", \"__rerun_remap_job_id__\": null, \"input1\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"key\": \"\\\"z-score\\\"\", \"transformation\": \"{\\\"transform\\\": \\\"none\\\", \\\"__current_case__\\\": 2}\"}", 
+            "tool_version": "0.0.2", 
+            "type": "tool", 
+            "uuid": "bafbc129-a962-40db-b4ea-d927742d5dd8", 
+            "workflow_outputs": []
+        }
+    }, 
+    "uuid": "288653ae-3bac-4558-bfae-ce1dd58385aa"
+}
